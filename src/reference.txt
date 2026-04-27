@@ -1,0 +1,31 @@
+Task -1 : add button implementation 
+    - get & store the input data from inputTag using eventListeners and useStates as string.
+    - create a add button and using onclick eventListener trigger the a function.  
+    - that function contains the logic : using spread operator create a new list and add the exisiting list with it.
+    - setlist ([...list,task]) => this syntax create a new array, adding the new and exisiting task to it.
+    - using map function display the items in the list
+
+    #code : 
+         const [list,setlist] = useState("");
+        const [task,setTask] = useState([]);
+
+        const handleChange = (event) => {
+        setlist(event.target.value);
+        }
+        const addtask = (event) => {
+        setTask([...task,list])
+        setlist('')
+        }
+
+        return (
+            <div className="App">
+            <div className='add new task'>
+                <input onChange={handleChange} value={list}/>
+                <button onClick={addtask}>Add Task➕</button>
+            </div>
+            <div className='list'>
+                {task.map((item) => <h1>{item}</h1>)}
+            </div>
+            </div>
+        );
+
