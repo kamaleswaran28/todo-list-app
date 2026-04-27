@@ -29,3 +29,4 @@ Task -1 : add button implementation
             </div>
         );
 
+Task 2 : creating delete feature in the list
