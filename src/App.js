@@ -13,6 +13,13 @@ function App() {
    setlist('')
  }
 
+ const deleteList = (taskName) => {
+    const updatedList =  task.filter((item) => {
+      return item !== taskName
+    })
+    setTask(updatedList)
+ }
+
   return (
     <div className="App">
       <div className='add new task'>
@@ -20,7 +27,15 @@ function App() {
         <button onClick={addtask}>Add Task➕</button>
       </div>
       <div className='list'>
-        {task.map((item) => <h1>{item}</h1>)}
+        {task.map((item) => {
+          return(
+            <div>
+              <h1>{item}</h1> 
+               <button onClick={() => deleteList(item)}>x</button>
+            </div>
+          )
+        }
+          )}
       </div>
     </div>
   );
