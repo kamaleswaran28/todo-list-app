@@ -1,9 +1,9 @@
-Task -1 : add button implementation 
-    - get & store the input data from inputTag using eventListeners and useStates as string.
-    - create a add button and using onclick eventListener trigger the a function.  
-    - that function contains the logic : using spread operator create a new list and add the exisiting list with it.
-    - setlist ([...list,task]) => this syntax create a new array, adding the new and exisiting task to it.
-    - using map function display the items in the list
+@ Task -1 : add button implementation:
+    * get & store the input data from inputTag using eventListeners and useStates as string.
+    * create a add button and using onclick eventListener trigger the a function.  
+    * that function contains the logic : using spread operator create a new list and add the exisiting list with it.
+    * setlist ([...list,task]) => this syntax create a new array, adding the new and exisiting task to it.
+    * using map function display the items in the list
 
     #code : 
          const [list,setlist] = useState("");
@@ -29,96 +29,97 @@ Task -1 : add button implementation
             </div>
         );
 
-Task 2 : creating delete feature in the list:
-  const [taskName,setTaskName] = useState('')
-  const [taskList,setTaskList] = useState([])
+@ Task 2 : creating delete feature in the list:
+    const [taskName,setTaskName] = useState('')
+    const [taskList,setTaskList] = useState([])
 
-  const fetchTaskName = (event) => {
-    setTaskName(event.target.value);
-  }
+    const fetchTaskName = (event) => {
+        setTaskName(event.target.value);
+    }
 
-  const addTaskName = () =>{
-    setTaskList([...taskList , taskName]);
-    setTaskName('');
-  }
+    const addTaskName = () =>{
+        setTaskList([...taskList , taskName]);
+        setTaskName('');
+    }
 
-  const deleteTaskName = (taskName) => {
-    const updatedList = taskList.filter((name)=>{
-      return taskName !== name;
-    });
-    setTaskList(updatedList);
-  }
+    const deleteTaskName = (taskName) => {
+        const updatedList = taskList.filter((name)=>{
+        return taskName !== name;
+        });
+        setTaskList(updatedList);
+    }
 
 
-  return (
-    <div className='App'>
+    return (
+        <div className='App'>
 
-      <div className='add-task-layout'>
-        <input onChange={fetchTaskName} value={taskName}/>
-        <button onClick={addTaskName}>Add</button>
-      </div>
-      
-      <div className='display-task-layout'>
-        {
-          taskList.map( (list) => {
-            return (
-              <div> 
-                <h1>{list}</h1>
-                <button onClick={() => deleteTaskName(list)}>❌</button>
-              </div>
-            );
-          } )
-        }
-      </div>
+        <div className='add-task-layout'>
+            <input onChange={fetchTaskName} value={taskName}/>
+            <button onClick={addTaskName}>Add</button>
+        </div>
+        
+        <div className='display-task-layout'>
+            {
+            taskList.map( (list) => {
+                return (
+                <div> 
+                    <h1>{list}</h1>
+                    <button onClick={() => deleteTaskName(list)}>❌</button>
+                </div>
+                );
+            } )
+            }
+        </div>
 
-    </div>
-  )
+        </div>
+    )
 
-Task 3 : add convert the elements in the list into objects:
+@Task 3 : add convert the elements in the list into objects:
 
- const [list,setlist] = useState("");
- const [task,setTask] = useState([]);
+    const [list,setlist] = useState("");
+    const [task,setTask] = useState([]);
 
- const handleChange = (event) => {
-   setlist(event.target.value);
- }
- const addtask = () => {
+    const handleChange = (event) => {
+    setlist(event.target.value);
+    }
+    const addtask = () => {
+    */ loading a new object as a element in an array 
+    const newTaskList =  {
+        id : task.length === 0 ? 1 : task[task.length -1].id + 1 ,
+        taskName : list,
+        isCompleted : false
+    }
+    setTask([...task, newTaskList])
+    setlist('')
+    }
 
-  const newTaskList =  {
-    id : task.length === 0 ? 1 : task[task.length -1].id + 1 ,
-    taskName : list,
-    isCompleted : false
-  }
-  setTask([...task, newTaskList])
-  setlist('')
- }
+    const deleteList = (taskID) => {
+        const updatedList =  task.filter((item) => {
+        return item.id !== taskID
+        })
+        setTask(updatedList)
+    }
 
- const deleteList = (taskID) => {
-    const updatedList =  task.filter((item) => {
-      return item.id !== taskID
-    })
-    setTask(updatedList)
- }
-
-  return (
-    <div className="App">
-      <div className='add new task'>
-        <input onChange={handleChange} value={list}/>
-        <button onClick={addtask}>Add Task➕</button>
-      </div>
-      <div className='list'>
-        {task.map((item) => {
-          return(
-            <div>
-              <h1>{item.taskName}</h1> 
-               <button onClick={() => deleteList(item.id)}>x</button>
-            </div>
-          )
-        }
-          )}
-      </div>
-    </div>
-  );
+    return (
+        <div className="App">
+        <div className='add new task'>
+            <input onChange={handleChange} value={list}/>
+            <button onClick={addtask}>Add Task➕</button>
+        </div>
+        <div className='list'>
+            {task.map((item) => {
+            return(
+                <div>
+                <h1>{item.taskName}</h1> 
+                * updating the delete parameter accordingly to pass the id
+                <button onClick={() => deleteList(item.id)}>x</button>
+                </div>
+            )
+            }
+            )}
+        </div>
+        </div>
+    );
 
 Task 4 : create a separte component and render it for the tasks:
 

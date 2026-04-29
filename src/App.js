@@ -11,13 +11,17 @@ function App() {
   }
 
   const addTaskName = () =>{
-    setTaskList([...taskList , taskName]);
+    const updatedTaskList = {
+      id : taskList.length === 0 ? 1 : taskList[taskList.length - 1].id + 1,
+      name: taskName
+    }
+    setTaskList([...taskList , updatedTaskList]);
     setTaskName('');
   }
 
-  const deleteTaskName = (taskName) => {
-    const updatedList = taskList.filter((name)=>{
-      return taskName !== name;
+  const deleteTaskName = (taskid) => {
+    const updatedList = taskList.filter((task)=>{
+      return taskid !== task.id;
     });
     setTaskList(updatedList);
   }
@@ -36,8 +40,8 @@ function App() {
           taskList.map( (list) => {
             return (
               <div> 
-                <h1>{list}</h1>
-                <button onClick={() => deleteTaskName(list)}>❌</button>
+                <h1>{list.name}</h1>
+                <button onClick={() => deleteTaskName(list.id)}>❌</button>
               </div>
             );
           } )
