@@ -2,43 +2,50 @@ import './App.css';
 import { useState } from 'react';
 
 function App() {
- const [list,setlist] = useState("");
- const [task,setTask] = useState([]);
 
- const handleChange = (event) => {
-   setlist(event.target.value);
- }
- const addtask = (event) => {
-   setTask([...task,list])
-   setlist('')
- }
+  const [taskName,setTaskName] = useState('')
+  const [taskList,setTaskList] = useState([])
 
- const deleteList = (taskName) => {
-    const updatedList =  task.filter((item) => {
-      return item !== taskName
-    })
-    setTask(updatedList)
- }
+  const fetchTaskName = (event) => {
+    setTaskName(event.target.value);
+  }
+
+  const addTaskName = () =>{
+    setTaskList([...taskList , taskName]);
+    setTaskName('');
+  }
+
+  const deleteTaskName = (taskName) => {
+    const updatedList = taskList.filter((name)=>{
+      return taskName !== name;
+    });
+    setTaskList(updatedList);
+  }
+
 
   return (
-    <div className="App">
-      <div className='add new task'>
-        <input onChange={handleChange} value={list}/>
-        <button onClick={addtask}>Add Task➕</button>
+    <div className='App'>
+
+      <div className='add-task-layout'>
+        <input onChange={fetchTaskName} value={taskName}/>
+        <button onClick={addTaskName}>Add</button>
       </div>
-      <div className='list'>
-        {task.map((item) => {
-          return(
-            <div>
-              <h1>{item}</h1> 
-               <button onClick={() => deleteList(item)}>x</button>
-            </div>
-          )
+      
+      <div className='display-task-layout'>
+        {
+          taskList.map( (list) => {
+            return (
+              <div> 
+                <h1>{list}</h1>
+                <button onClick={() => deleteTaskName(list)}>❌</button>
+              </div>
+            );
+          } )
         }
-          )}
       </div>
+
     </div>
-  );
+  )
 }
 
 export default App;
