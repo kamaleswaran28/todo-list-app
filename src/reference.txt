@@ -6,7 +6,7 @@
     * using map function display the items in the list
 
     #code : 
-         const [list,setlist] = useState("");
+        const [list,setlist] = useState("");
         const [task,setTask] = useState([]);
 
         const handleChange = (event) => {
@@ -121,8 +121,8 @@
         </div>
     );
 
-Task 4 : create a separte component and render it for the tasks:
-
+@Task 4 : create a separte component and render it for the tasks:
+    
 Task 5 : add update button if you click the text should turn into green 
 Task 6 : add update button to edit the task 
 Task 7 : add css and push the code in git 
