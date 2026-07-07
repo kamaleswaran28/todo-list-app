@@ -1,8 +1,9 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import { About } from "./about";
-import { Contact } from "./contact";
-import { Home } from "./home";
+import { About } from "./pages/about";
+import { Contact } from "./pages/contact";
+import { Home } from "./pages/home";
+import { Pagenotfound } from "./pages/pagenotfound";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/*" element={<Pagenotfound />} />
           </Routes>
         </Router>
       </div>
