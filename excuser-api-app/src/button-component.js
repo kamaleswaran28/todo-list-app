@@ -12,7 +12,7 @@ export const ExcuserButtons = ({getExcuseDetails}) => {
         <button onClick={() => getExcuseDetails("funny")}>Funny</button>
       </div>
       <div className="third-row">
-        <button onClick={() => getExcuseDetails("unbeliveable")}>Unbeliveable</button>
+        <button onClick={() => getExcuseDetails("unbelievable")}>unbelievable</button>
         <button onClick={() => getExcuseDetails("developers")}>Developers</button>
         <button onClick={() => getExcuseDetails("gaming")}>Gaming</button>
       </div>

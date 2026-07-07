@@ -1,35 +1,27 @@
 import "./App.css";
-import { useState } from "react";
-import { ExcuserButtons } from "./button-component";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { About } from "./about";
+import { Contact } from "./contact";
+import { Home } from "./home";
 
 function App() {
-  const [excuseText, setExcuseText] = useState("");
-
-    async function getExcuseDetails(category) {
-
-      const response = await fetch(
-        `https://excuser-three.vercel.app/v1/excuse/${category}/`,
-      );
-      const value = await response.json();
-      console.log("Full API response:", value);
-      setExcuseText(value[0]?.excuse);
-
-      console.log("Excuse:", value[0]?.excuse);
-      console.log("Category:", category);
-      console.log("Response object:", response);
-    }
-
   return (
     <div className="App">
-      <div className="text">
-        <p>{excuseText}</p>
+      <div>
+        <Router>
+          <nav>
+            <Link to="/">Home</Link>
+            <Link to="/about">About</Link>
+            <Link to="/contact">contact</Link>
+          </nav>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </Router>
       </div>
 
-      <div className="buttons">
-        <ExcuserButtons 
-          getExcuseDetails = {getExcuseDetails}
-        />
-      </div>
     </div>
   );
 }
