@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useContext } from "react";
+import { AppContext } from "../App";
 import { ExcuserButtons } from "./button-component";
 
-export const Home = () => {
+export const Home = (props) => {
   const [excuseText, setExcuseText] = useState("");
+  const { username } = useContext(AppContext);
 
   async function getExcuseDetails(category) {
     const response = await fetch(
@@ -18,7 +21,7 @@ export const Home = () => {
   }
   return (
     <div>
-      <h1>hey 👋🏻!! we are in Home page 🏡</h1>
+      <h1>hey {username}👋🏻!! we are in Home page 🏡</h1>
       <div className="text">
         <p>{excuseText}</p>
       </div>
